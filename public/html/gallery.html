@@ -5,11 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../javascripts/gallery.js"></script>
     <title>Gallery</title>
+    <style>
+        #gd-cnt {
+            text-align: center;
+            /* background-color: lightblue; */
+            grid-template-columns: auto auto auto;
+            display: grid;
+            grid-gap: 50px;
+        }
+
+        .gd-itm {
+
+            /* padding-right: 1px; */
+            border-radius: 4px;
+            background-color: gray;
+            padding: 10px;
+            display: inline-grid;
+
+
+        }
+    </style>
 </head>
 
-<body>
-    <h1>This is the gallery</h1>
+<body style="text-align: center ; background-color: black;" onload="test()">
+    <h1 style="color : white">This is the gallery</h1>
+    <div id="gd-cnt">
+        <div id="1" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+
+        <div id="2" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+        <div id="3" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+        <div id="4" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+        <div id="5" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+        <div id="6" class="gd-itm">
+            <img style="width:100%;height:100%;" src="https://thispersondoesnotexist.com/image">
+        </div>
+
+    </div>
 </body>
 
 </html>
