@@ -90,18 +90,17 @@ body {
     clear: both;
   }
   
-  /* Style the input */
-  /* input {
-    margin: 0;
+input{
+    text-align: center;
     border: none;
-    border-radius: 0;
-    width: 75%;
-    padding: 10px;
-    float: left;
-    font-size: 16px;
-  }
-   */
-  /* Style the "Add" button */
+    width: 50%;
+    background-color: gray;
+    border-bottom: 2px solid red;
+    
+}
+textarea:focus,input:focus{
+   outline: none;
+}
   .addBtn {
     padding: 10px;
     width: 25%;
@@ -124,8 +123,9 @@ body {
       background-color: white;
   }
   #main-container {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
       border-radius: 10px;
-      align-items: center;
       background-color: gray;
       padding: 10px;
   }

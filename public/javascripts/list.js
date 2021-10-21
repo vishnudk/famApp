@@ -1,3 +1,4 @@
+
 function addItemToList() {
     var item = document.getElementById("text-container").value;
     var t = document.createTextNode(item);
@@ -35,6 +36,14 @@ list.addEventListener('click', function (ev) {
     }
 }, false);
 
+function newElementEnter(event) {
+
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("add-btn").click();
+    }
+
+}
 // Create a new list item when clicking on the "Add" button
 function newElement() {
     var li = document.createElement("li");
