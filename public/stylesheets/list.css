@@ -129,3 +129,18 @@ textarea:focus,input:focus{
       background-color: gray;
       padding: 10px;
   }
+
+  #add-btn{
+      padding-top: 4px;
+      padding-left: 4px;
+      padding-right:4px;
+    transition-duration: 0.4s;
+    border-radius: 2px;
+    border-color: red;
+    background-color:red;
+    color :white;
+  }
+  #add-btn:hover{
+      color: white;
+      background-color:gray;
+  }
