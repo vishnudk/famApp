@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var galleryRouter = require('./routes/gallery')
 var calendarRouter = require('./routes/calendar')
 var listRouter = require('./routes/list')
+var chatRouter = require('./routes/chat')
 var port = 5000;
 var app = express();
 
@@ -26,7 +27,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gallery', galleryRouter)
 app.use('/calendar', calendarRouter);
-app.use('/list', listRouter)
+app.use('/list', listRouter);
+app.use('/chat', chatRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
