@@ -118,3 +118,14 @@ body {
   .addBtn:hover {
     background-color: #bbb;
   }
+
+  body{
+      padding:10px;
+      background-color: white;
+  }
+  #main-container {
+      border-radius: 10px;
+      align-items: center;
+      background-color: gray;
+      padding: 10px;
+  }
