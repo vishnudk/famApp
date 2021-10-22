@@ -63,7 +63,9 @@ input{
     text-align: center;
     border: none;
     width: 50%;
-    background-color: gray;
+        background-color: #192435;
+
+
     border-bottom: 2px solid red;
     
 }
@@ -73,13 +75,19 @@ textarea:focus,input:focus{
 
   body{
       padding:10px;
-      background-color: white;
+      text-align:center;
+      background: linear-gradient(45deg, #6ac1c5, #bda5ff);
+
   }
   #main-container {
+      margin-left:27%;
       font-family: Arial, Helvetica, sans-serif;
       text-align: center;
       border-radius: 10px;
-      background-color: gray;
+      width:40%;
+      /* background: linear-gradient(45deg, #6ac1c5, #bda5ff); */
+          background-color: #192435;
+
       padding: 10px;
   }
 
@@ -96,4 +104,7 @@ textarea:focus,input:focus{
   #add-btn:hover{
       color: white;
       background-color:gray;
+  }
+  h1{
+    color:white;
   }
