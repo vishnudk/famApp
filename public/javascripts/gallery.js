@@ -8,13 +8,19 @@ function test() {
       var tmDiv = document.createElement('div');
       tmDiv.id = k+1;
       tmDiv.className = "gd-itm";
-      
+      var da = document.createElement('a');
+      da.href = "https://thispersondoesnotexist.com/image";
+      da.setAttribute("download","true");
+      var btn = document.createElement('button');
+      btn.innerText = "download";
+      da.appendChild(btn);
       var tmImg = document.createElement('img');
       tmImg.src = "https://thispersondoesnotexist.com/image";
       tmImg.style.width = "100%";
       tmImg.style.height = "100%";
       tmDiv.appendChild(tmImg);
       mainDiv.appendChild(tmDiv);
+      tmDiv.appendChild(da);
 
   }
   var mItms = document.getElementsByClassName("gd-itm");
