@@ -65,9 +65,10 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 app.post('/serverUpload', upload.single('file'), (req, res) => {
-
-  console.log("got the file");
-  res.json({ file: req.file });
+  // alert("File uploaded successfully!");
+  res.redirect("http://localhost:5000/gallery")
+  // console.log("got the file");
+  // res.json({ file: req.file });
 });
 app.get('/files/:fileName', (req, res) => {
   gfs.files.find({ "filename": req.params.fileName }).toArray((err, file) => {
@@ -82,6 +83,13 @@ app.get('/files/:fileName', (req, res) => {
     }
     // return res.json(file);
   });
+});
+
+app.get('/delete/:filename', (req, res) => {
+  gfs.remove({ filename: req.params.filename, root: 'fileServer' }, (err, gridstore) => {
+    if (err) return res.status(404).json({ err: err });
+  });
+  res.redirect("http://localhost:5000/gallery")
 });
 
 app.get('/files', (req, res) => {

@@ -27,6 +27,20 @@
 
 
         }
+
+        .btn {
+            /* overflow: hidden; */
+            width: 55px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px;
+            background-color: rgb(0, 110, 255);
+            color: white;
+            font-size: 48px;
+            border-radius: 100%;
+            font-weight: 911;
+        }
     </style>
 </head>
 
@@ -34,6 +48,11 @@
     <h1 style="color :black ">Gallery</h1>
     <div id="gd-cnt">
     </div>
+
+    <form action="http://localhost:3000/serverUpload" method="post" enctype="multipart/form-data">
+        <label for="file"><span for="files" class="btn">&#43;</span></label>
+        <input type="file" id='file' name="file" onchange='form.submit()' style="visibility:hidden;">
+    </form>
 </body>
 
 </html>
