@@ -25,7 +25,15 @@ function test() {
                 btn.innerText = "delete";
                 btn.id = k;
                 btn.className = 'btn1';
-                var tmImg = document.createElement('img');
+                if (data[k]['filename'].includes('mp4')) {
+
+                    var tmImg = document.createElement('video');
+                    tmImg.setAttribute("controls", "controls");
+
+                }
+                else {
+                    var tmImg = document.createElement('img');
+                }
                 btn.onClick = function () {
 
                     console.log("hello how are you ");//+ this.id)
@@ -67,11 +75,22 @@ function test() {
             for (var bt1 = 0; bt1 < btn_itm.length; bt1++) {
                 btn_itm[bt1].addEventListener('click', function () {
                     var idNo = Number(this.id) + Number(1);
-                    console.log(document.getElementById(idNo).getElementsByTagName('img')[0].id);
-                    fetch('http://localhost:3000/delete/' + document.getElementById(idNo).getElementsByTagName('img')[0].id).catch(() => {
-                        alert("File deleted!!")
-                        window.location.href = "http://localhost:5000/gallery"
-                    });
+                    alert("deleteing.....");
+                    try {
+                        console.log(document.getElementById(idNo).getElementsByTagName('img')[0].id);
+                        fetch('http://localhost:3000/delete/' + document.getElementById(idNo).getElementsByTagName('img')[0].id).catch(() => {
+                            alert("File deleted!!")
+                            window.location.href = "http://localhost:5000/gallery"
+                        });
+                    }
+                    catch (err) {
+                        console.log(document.getElementById(idNo).getElementsByTagName('video')[0].id);
+                        fetch('http://localhost:3000/delete/' + document.getElementById(idNo).getElementsByTagName('video')[0].id).catch(() => {
+                            alert("File deleted!!")
+                            window.location.href = "http://localhost:5000/gallery"
+                        });
+                    }
+
                 })
             }
         });
