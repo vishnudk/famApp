@@ -44,3 +44,12 @@ function newElement() {
         }
     }
 }
+
+
+function getDataFromDataBase() {
+
+}
+
+function putDataToDataBase(data) {
+
+}

@@ -23,14 +23,26 @@ function test() {
                 da.setAttribute("download", "true");
                 var btn = document.createElement('button');
                 var flScreenBtn = document.createElement('button');
+                var downloadBtn = document.createElement('button');
 
-                btn.innerText = "delete";
+                var deleteIcon = document.createElement('i');
+                deleteIcon.className = 'fa fa-trash';
+                btn.appendChild(deleteIcon);
                 btn.id = k;
                 btn.className = 'btn1';
 
-                flScreenBtn.innerText = "fullScreen";
+                var fullscreenIcon = document.createElement('i');
+                fullscreenIcon.className = 'glyphicon glyphicon-fullscreen';
+                flScreenBtn.appendChild(fullscreenIcon);
                 flScreenBtn.id = k;
                 flScreenBtn.className = 'btn2';
+
+                var downloadIcon = document.createElement('i');
+                downloadIcon.className = 'fa fa-download';
+                downloadBtn.appendChild(downloadIcon);
+                downloadBtn.id = k;
+                downloadBtn.className = 'btn3';
+
                 if (data[k]['filename'].includes('mp4')) {
 
                     var tmImg = document.createElement('video');
@@ -50,6 +62,7 @@ function test() {
                 mainDiv.appendChild(tmDiv);
                 tmDiv.appendChild(da);
                 tmDiv.appendChild(btn);
+                tmDiv.appendChild(downloadBtn);
                 tmDiv.appendChild(flScreenBtn);
 
             }
@@ -83,6 +96,7 @@ function test() {
             // console.log(document.getElementsByClassName('btn2').length);
             // ##########################################################################
             var mItmsBtn = document.getElementsByClassName('btn2');
+            var downloadBtnTmp = document.getElementsByClassName('btn3');
             var mItms = document.getElementsByClassName("gd-itm");
             for (var j = 0; j < mItms.length; j++) {
                 mItms[j].style.display = 'inline-grid';
@@ -90,6 +104,10 @@ function test() {
 
             }
             for (var ino = 0; ino < mItmsBtn.length; ino++) {
+                downloadBtnTmp[ino].addEventListener('click', function () {
+                    document.getElementById(Number(this.id) + Number(1)).getElementsByTagName('a')[0].click();
+                });
+
                 // console.log("reached the for loop at the least");
                 mItmsBtn[ino].addEventListener('click', function () {
                     var id = this.id;
