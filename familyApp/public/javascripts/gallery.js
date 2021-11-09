@@ -22,24 +22,25 @@ function test() {
                 da.href = url;
                 da.setAttribute("download", "true");
                 var btn = document.createElement('button');
+                var flScreenBtn = document.createElement('button');
+
                 btn.innerText = "delete";
                 btn.id = k;
                 btn.className = 'btn1';
+
+                flScreenBtn.innerText = "fullScreen";
+                flScreenBtn.id = k;
+                flScreenBtn.className = 'btn2';
                 if (data[k]['filename'].includes('mp4')) {
 
                     var tmImg = document.createElement('video');
-                    tmImg.setAttribute("controls", "controls");
+                    // tmImg.setAttribute("controls", "controls");
 
                 }
                 else {
                     var tmImg = document.createElement('img');
                 }
-                btn.onClick = function () {
 
-                    console.log("hello how are you ");//+ this.id)
-                    // console.log(tmImg[0].id);
-
-                }
 
                 tmImg.id = data[k]['filename'];
                 tmImg.src = url;
@@ -49,42 +50,27 @@ function test() {
                 mainDiv.appendChild(tmDiv);
                 tmDiv.appendChild(da);
                 tmDiv.appendChild(btn);
+                tmDiv.appendChild(flScreenBtn);
 
             }
 
-            // var mItms = document.getElementsByClassName("gd-itm");
-            // for (var j = 0; j < mItms.length; j++) {
-            //     mItms[j].style.display = 'inline-grid';
-            // }
-            // for (var i = 0; i < mItms.length; i++) {
 
-            //     mItms[i].onclick = function () {
-            //         var id = this.id;
-            //         for (var j = 0; j < mItms.length; j++) {
-            //             if (mItms[j].style.display != 'none') {
-            //                 if (j + 1 != id) { mItms[j].style.display = 'none'; }
-            //             }
-            //             else {
-            //                 mItms[j].style.display = 'inline-grid';
-            //             }
-            //         }
-            //         console.log(id);
-            //     }
-            // }
+
+
             var btn_itm = document.getElementsByClassName('btn1');
             for (var bt1 = 0; bt1 < btn_itm.length; bt1++) {
                 btn_itm[bt1].addEventListener('click', function () {
                     var idNo = Number(this.id) + Number(1);
                     alert("deleteing.....");
                     try {
-                        console.log(document.getElementById(idNo).getElementsByTagName('img')[0].id);
+                        // console.log(document.getElementById(idNo).getElementsByTagName('img')[0].id);
                         fetch('http://localhost:3000/delete/' + document.getElementById(idNo).getElementsByTagName('img')[0].id).catch(() => {
                             alert("File deleted!!")
                             window.location.href = "http://localhost:5000/gallery"
                         });
                     }
                     catch (err) {
-                        console.log(document.getElementById(idNo).getElementsByTagName('video')[0].id);
+                        // console.log(document.getElementById(idNo).getElementsByTagName('video')[0].id);
                         fetch('http://localhost:3000/delete/' + document.getElementById(idNo).getElementsByTagName('video')[0].id).catch(() => {
                             alert("File deleted!!")
                             window.location.href = "http://localhost:5000/gallery"
@@ -93,6 +79,62 @@ function test() {
 
                 })
             }
+        }).then(() => {
+            // console.log(document.getElementsByClassName('btn2').length);
+            // ##########################################################################
+            var mItmsBtn = document.getElementsByClassName('btn2');
+            var mItms = document.getElementsByClassName("gd-itm");
+            for (var j = 0; j < mItms.length; j++) {
+                mItms[j].style.display = 'inline-grid';
+                // console.log("reached the for loop at the least0");
+
+            }
+            for (var ino = 0; ino < mItmsBtn.length; ino++) {
+                // console.log("reached the for loop at the least");
+                mItmsBtn[ino].addEventListener('click', function () {
+                    var id = this.id;
+                    for (var jno = 0; jno < mItms.length; jno++) {
+                        if (mItms[jno].style.display != 'none') {
+                            if (jno != id) { mItms[jno].style.display = 'none'; }
+                            else {
+                                // console.log(document.getElementById(Number(id) + Number(1)).getElementsByTagName('video')[0].controls);
+                                if (document.getElementById(Number(id) + Number(1)).getElementsByTagName('video')[0].controls == false) {
+                                    // console.log('going to be true');
+                                    try {
+                                        // console.log(document.getElementById(Number(id) + Number(1)).getElementsByTagName('video').controls);
+                                        document.getElementById(Number(id) + Number(1)).getElementsByTagName('video')[0].controls = 'true';//.setAttribute("controls", "controls");
+                                    }
+                                    catch (e) {
+
+                                    }
+                                }
+                                else {
+                                    try {
+                                        // console.log('going to be false');
+
+                                        // console.log(document.getElementById(Number(id) + Number(1)).getElementsByTagName('video').controls);
+                                        document.getElementById(Number(id) + Number(1)).getElementsByTagName('video')[0].controls = false;//.setAttribute("controls", "controls");
+                                    }
+                                    catch (e) {
+
+                                    }
+                                }
+                                // console.log(document.getElementById(Number(id) + Number(1)).getElementsByTagName('video')[0].controls);
+
+                            }
+                        }
+                        else {
+                            mItms[jno].style.display = 'inline-grid';
+
+                        }
+                    }
+                    // console.log(id);
+                });
+
+            }
+
+            // ##########################################################################
+
         });
 
 }
