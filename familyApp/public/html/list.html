@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="../stylesheets/list.css">
 </head>
 
-<body>
+<body onload="getDataFromDataBase()">
     <div id="main-container">
         <h1>This is the list for shopping</h1>
-        <input type="text" name="" id="text-container" onkeydown="newElementEnter(event)">
+        <input type="text" name="" id="text-container" style="color:white;" onkeydown="newElementEnter(event)">
         <button onclick="newElement()" id="add-btn">ADD</button>
-        
+
         <ul id="myUL">
         </ul>
     </div>

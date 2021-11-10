@@ -20,6 +20,9 @@ var calendarRouter = require('./routes/calendar');
 var listRouter = require('./routes/list');
 var chatRouter = require('./routes/chat');
 var apiGetData = require('./routes/getImageFileData');
+var testServer = require('./database/addDataList');
+var getListItm = require('./database/getDataFromServer');
+var removeListItm = require('./database/removeDataFromServer');
 var port = 5000;
 var app = express();
 
@@ -40,6 +43,9 @@ app.use('/calendar', calendarRouter);
 app.use('/list', listRouter);
 app.use('/chat', chatRouter);
 app.use('/apiData', apiGetData);
+app.use('/updateListItm', testServer);
+app.use('/listGetData', getListItm);
+app.use('/removeFromDataBase', removeListItm);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
