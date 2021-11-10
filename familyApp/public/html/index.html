@@ -8,15 +8,44 @@
     <title>Home page</title>
     <link rel="stylesheet" href="../stylesheets/index.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="../javascripts/index.js"></script>
 </head>
 
 <body>
-    <button onclick="goToList()">List</button>
-    <button id='calendar' onclick="showDate()">Calendar</button>
-    <button onclick="showChat()">Chat</button>
-    <button id="gallery" onclick="changePage()">Gallery</button>
+    <div id="sidebar">
+        <div class="toggle-btn" onclick="show()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul>
+            <li>Font size</li>
+            <li><input type="range" min="20" max="32" step="2" id="slider" /></li>
+        </ul>
+    </div>
+    <h1>FamilyApp</h1>
+    <div class="content">
+        <button onclick="goToList()">List</button>
+        <button id='calendar' onclick="showDate()">Calendar</button>
+        <button onclick="showChat()">Chat</button>
+        <button id="gallery" onclick="changePage()">Gallery</button>
+    </div>
+    <script>
+        function show(){
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        $('input').on('input', function() {
+        var v = $(this).val();
+        var content = document.getElementById('content');
+        $(content).css('opacity', '0.5')
+        $('button').css('font-size', v + 'px')
+        $('li').css('font-size', v + 'px')
+
+});
+    </script>
 </body>
 
 </html>
