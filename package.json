@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/vishnudk/famApp/issues"
   },
-  "homepage": "https://github.com/vishnudk/famApp#readme"
+  "homepage": "https://github.com/vishnudk/famApp#readme",
+  "dependencies": {
+    "socket.io": "^4.3.2"
+  }
 }

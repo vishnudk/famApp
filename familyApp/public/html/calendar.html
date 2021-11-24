@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,90 @@
     <link rel="stylesheet" href="../stylesheets/calendar.css">
     <link rel="stylesheet" href="../stylesheets/evo-calendar.css">
     <link rel="stylesheet" href="../stylesheets/evo-calendar.midnight-blue.css">
+    <script>
+        function dayEvent() {
+            var dayBtns = document.getElementsByClassName('day');
+            for (var i = 0; i < dayBtns.length; i++) {
+                dayBtns[i].addEventListener('click', function () { console.log(this["dataset"]["dateVal"]); });
+            }
 
+        }
+
+        function getDateSelected() {
+            var dateBtns = document.getElementsByClassName('day');
+
+            for (var i = 0; i < dateBtns.length; i++) {
+                console.log(dateBtns[i].classList.length)
+                if (dateBtns[i].classList.length == 2) {
+                    return document.getElementsByClassName('day')[i]['dataset']["dateVal"];
+                }
+            }
+        }
+        function showDateData() {
+
+            var data =
+                fetch('http://localhost:5000/getCalendarData/?date=' + getDateSelected())
+                    .then(dat => { return dat.json() })
+                    .then(data => {
+                        if (data.result.length > 0) {
+                            document.getElementsByClassName("event-empty")[0].innerText = data.result[0]['todo']
+                        }
+                    })
+            // document.getElementsByClassName("event-empty")[0].innerText = document.getElementsByClassName('day')[i]['dataset']["dateVal"];
+
+
+        }
+        function loadData(dat) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://localhost:5000/putCalData', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                date: getDateSelected(),
+                todo: dat
+            }));
+        }
+        function addBtn() {
+            var btn = document.createElement('button');
+            var txtFld = document.createElement('input');
+            txtFld.type = 'text';
+            txtFld.id = 'todoData';
+            var cevent = document.getElementsByClassName('calendar-events')[0];
+            btn.id = 'addTodo';
+            btn.innerText = 'Add';
+            btn.addEventListener('click', function () {
+                var txtData = document.getElementById("todoData").value;
+                document.getElementById("todoData").value = "";
+                loadData(txtData);
+                showDateData();
+
+            });
+            cevent.appendChild(txtFld);
+            cevent.appendChild(btn);
+
+        }
+        function test() {
+            dayEvent();
+            showDateData();
+            // loadData();
+            addBtn();
+            var monthBtns = document.getElementsByClassName('month');
+            for (var i = 0; i < monthBtns.length; i++) {
+                monthBtns[i].addEventListener('click', function () { dayEvent(); console.log("hello"); })
+            }
+            var yearBtns = document.getElementsByClassName('icon-button');
+            for (var i = 0; i < 2; i++) {
+                yearBtns[i].addEventListener('click', function () { dayEvent(); console.log("hai"); })
+            }
+            document.getElementById("eventListToggler").addEventListener('click', function () {
+                showDateData();
+                console.log("hai");
+            });
+        }
+    </script>
     <title>Document</title>
 </head>
-<body>
+
+<body onload="test()">
     <div class="hero">
         <div id="calendar"></div>
     </div>
@@ -18,12 +99,13 @@
 
     <script src="../javascripts/evo-calendar.min.js"></script>
     <script>
-        $(document).ready(function() {
-    $('#calendar').evoCalendar({
-        'theme': 'Midnight Blue'
-    })
-})
+        $(document).ready(function () {
+            $('#calendar').evoCalendar({
+                'theme': 'Midnight Blue'
+            })
+        })
 
     </script>
 </body>
+
 </html>

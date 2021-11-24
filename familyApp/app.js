@@ -23,8 +23,33 @@ var apiGetData = require('./routes/getImageFileData');
 var testServer = require('./database/addDataList');
 var getListItm = require('./database/getDataFromServer');
 var removeListItm = require('./database/removeDataFromServer');
+var calendarApiRoute = require('./routes/calendarApi.js');
+var calendarPutData = require('./database/putCalendarData')
+var getCalendarData = require('./database/findDataCalendar')
 var port = 5000;
 var app = express();
+
+
+
+// ========================================================================================
+const io = require('socket.io')(5001)
+
+const users = {}
+
+io.on('connection', socket => {
+  socket.on('new-user', name => {
+    users[socket.id] = name
+    socket.broadcast.emit('user-connected', name)
+  })
+  socket.on('send-chat-message', message => {
+    socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
+  })
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('user-disconnected', users[socket.id])
+    delete users[socket.id]
+  })
+})
+// ========================================================================================
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +71,9 @@ app.use('/apiData', apiGetData);
 app.use('/updateListItm', testServer);
 app.use('/listGetData', getListItm);
 app.use('/removeFromDataBase', removeListItm);
+app.use('/calendarApi', calendarApiRoute)
+app.use('/putCalData', calendarPutData);
+app.use('/getCalendarData', getCalendarData);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

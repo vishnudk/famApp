@@ -3,9 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    // res.send('D:\\documents\\NCP-project\\familyApp\\public\\html\\index.html', { title: 'Express' })
-    res.sendFile('D:\\documents\\NCP-project\\familyApp\\public\\html\\chat.html', { title: 'Express' })
-    // res.render('D:\\documents\\NCP-project\\familyApp\\public\\html\\index.html', { title: 'Express' });
+    return res.redirect('http://localhost:8080');
+    // res.sendFile('D:\\documents\\NCP-project\\familyApp\\public\\html\\chat.html', { title: 'Express' })
+    // res.sendFile('D:\\documents\\NCP-project\\chatApp\\Realtime-Simple-Chat-App\\index.html', { title: 'Express' })
+
 });
 
 module.exports = router;
